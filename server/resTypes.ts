@@ -1,11 +1,13 @@
 import { Equipment } from "../src/models/equipmentModels";
 
-interface ErrorResponse {
+// defines the ErrorResponse for data fetching
+export interface ErrorResponse {
+  status: "failure";
   message: string;
 }
 
-// defines the response body of the fetchData function
-export interface FetchResponseType {
-  status: "success" | "failure";
-  body: Equipment[] | ErrorResponse;
+// defines the SuccessResponse for data fetching
+export interface SuccessResponse {
+  status: "success";
+  body: Equipment[];
 }
