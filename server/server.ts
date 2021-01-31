@@ -1,12 +1,30 @@
 import express from "express";
 import path from "path";
+import morgan from "morgan";
+import nodeCache from "node-cache";
+import { equipmentHandler } from "./handler";
 
+// initialize the app
 const app = express();
 
+// initialize the cache
+export const myCache = new nodeCache();
+
+// setting up static file serving middleware
 app.use(express.static(path.join(__dirname, "..", "build")));
 
-app.get("/", function (req, res) {
+// setting up request body parser middleware
+app.use(express.json());
+
+// setting up logging
+app.use(morgan("dev"));
+
+// client content serving route
+app.get("/", function (_, res) {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
-app.listen(5000, () => console.log("App listening"));
+// equipment route
+app.get("/equipments", equipmentHandler);
+
+app.listen(80, () => console.log("App listening to requests..."));
