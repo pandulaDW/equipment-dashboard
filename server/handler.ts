@@ -22,7 +22,7 @@ const fetchData = async (): Promise<SuccessResponse | ErrorResponse> => {
     } catch (err) {
       return {
         status: "failure",
-        message: "error in fetching equipments",
+        message: `Error in fetching equipments. ${err.response.data}`,
       };
     }
   }
@@ -37,10 +37,9 @@ export const equipmentHandler: Handler = async (_, res) => {
     const response = await fetchData();
     if (response.status === "failure") {
       return res.status(500).json(response);
-    } else {
-      equipments = response.body;
-      myCache.set("equipments", equipments, 60 * 60);
     }
+    equipments = response.body;
+    myCache.set("equipments", equipments, 60 * 60);
   }
   res.status(200).json(equipments);
 };
