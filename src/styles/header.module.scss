@@ -1,0 +1,39 @@
+@import "./theme";
+
+.container {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+
+  .content {
+    display: flex;
+    width: 80%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    .text {
+      h1 {
+        font-family: $font-primary;
+        font-weight: 400;
+        font-size: 2.2rem;
+        letter-spacing: 0.5px;
+      }
+
+      p {
+        font-family: $font-secondary;
+        font-size: 1rem;
+        color: $color-grey-6;
+        font-weight: 400;
+        margin-left: 1px;
+      }
+    }
+
+    img {
+      height: 80px;
+      width: auto;
+    }
+  }
+}
