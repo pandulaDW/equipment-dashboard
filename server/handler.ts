@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Handler } from "express";
 import { myCache } from "./server";
-import { equipmentService } from "./equipmentService";
+import { equipmentService } from "./service";
 import { Equipment, SuccessResponse, ErrorResponse } from "./resTypes";
 
 // modifying the url using the given parameters

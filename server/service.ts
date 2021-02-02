@@ -7,7 +7,7 @@ interface ServiceReturnType {
   EquipmentCount: { [key: string]: number };
 }
 
-// converts the api response to an appropriate model to be used by the client
+// converts the api response to the ServiceReturnType to be used by the client
 export const equipmentService = (data: Equipment[]) => {
   const equipmentInfo: ServiceReturnType = {
     OpItemCount: 0,
