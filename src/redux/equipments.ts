@@ -53,11 +53,14 @@ export const reducer = createReducer(initialState, (builder) => {
       state.loading = true;
     })
     .addCase(fetchEquipmentData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.errorMsg = undefined;
       state.OpItemCount = action.payload.OpItemCount;
       state.NonOpItemCount = action.payload.NonOpItemCount;
       state.EquipmentCount = action.payload.EquipmentCount;
     })
     .addCase(fetchEquipmentData.rejected, (state, action) => {
+      state.loading = false;
       state.errorMsg = action.payload as string;
     });
   builder.addDefaultCase((state) => state);
