@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // client content serving route
-app.get("/", function (_, res) {
+app.get("/", (_, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 

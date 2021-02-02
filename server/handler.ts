@@ -30,7 +30,7 @@ const fetchData = async (): Promise<SuccessResponse | ErrorResponse> => {
 };
 
 // equipment route handler will fetch the data from the api or use the cache to retrieve the data.
-// If the cache is expired, time to live will be set to the environment variable set time
+// time to live will be set using environment variables
 export const equipmentHandler: Handler = async (_, res) => {
   let equipments: Equipment[] | undefined;
   equipments = myCache.get("equipments");
