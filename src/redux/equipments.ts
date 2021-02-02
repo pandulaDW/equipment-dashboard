@@ -28,7 +28,7 @@ const initialState: State = {
   NonOpItemCount: undefined,
   loading: false,
   EquipmentCount: {},
-  errorMsg: "fetching error",
+  errorMsg: undefined,
 };
 
 // action creators
@@ -54,7 +54,7 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchEquipmentData.fulfilled, (state, action) => {
       state.loading = false;
-      // state.errorMsg = undefined;
+      state.errorMsg = undefined;
       state.OpItemCount = action.payload.OpItemCount;
       state.NonOpItemCount = action.payload.NonOpItemCount;
       state.EquipmentCount = action.payload.EquipmentCount;
