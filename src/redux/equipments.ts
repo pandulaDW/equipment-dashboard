@@ -37,7 +37,9 @@ export const fetchEquipmentData = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       let response: AxiosResponse<FetchResponseType>;
-      response = await axios.get("http://localhost/equipments");
+      response = await axios.get(
+        `http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/equipments`
+      );
       return response.data;
     } catch (err) {
       console.log(err);

@@ -1,9 +1,13 @@
 import express from "express";
 import path from "path";
 import cors from "cors";
+import dotenv from "dotenv";
 import morgan from "morgan";
 import nodeCache from "node-cache";
 import { equipmentHandler } from "./handler";
+
+// read and parse the environment variables
+dotenv.config();
 
 // initialize the app
 const app = express();
@@ -31,4 +35,8 @@ app.get("/", function (_, res) {
 // equipment route
 app.get("/equipments", equipmentHandler);
 
-app.listen(80, () => console.log("App listening to requests..."));
+app.listen(process.env.REACT_APP_PORT, () =>
+  console.log(
+    `App listening to requests at port ${process.env.REACT_APP_PORT}...`
+  )
+);
