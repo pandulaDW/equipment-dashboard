@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Equipment Dashboard
  This is a dashboard made with React, Redux and Typescript which consist of summary information about all the equipment in an organization. Equipment data is accessed from an external API using an Express app, which is also written in Typescript.
 
 

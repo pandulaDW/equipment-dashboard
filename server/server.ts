@@ -22,10 +22,16 @@ app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.json());
 
 // setting up logging
-app.use(morgan("dev"));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+} else {
+  app.use(morgan("combined"));
+}
 
 // enable cors for development
-app.use(cors());
+if (process.env.NODE_ENV === "development") {
+  app.use(cors());
+}
 
 // client content serving route
 app.get("/", function (_, res) {

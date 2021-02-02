@@ -34,10 +34,10 @@
   "scripts": {
     "clean-lib": "rimraf lib",
     "start-client": "react-scripts start",
-    "start-server": "ts-node-dev --project tsconfig.server.json server/server.ts",
+    "start-server": "cross-env NODE_ENV=development ts-node-dev --project tsconfig.server.json server/server.ts",
     "start": "concurrently \"npm run start-client\" \"npm run start-server\"",
     "build-client": "react-scripts build",
-    "build-server": "npm run clean-lib && tsc -p tsconfig.server.json",
+    "build-server": "cross-env NODE_ENV=production npm run clean-lib && tsc -p tsconfig.server.json",
     "build": "npm run build-client && npm run build-server",
     "deploy": "npm run build && node lib/server.js",
     "test": "react-scripts test",
@@ -65,6 +65,7 @@
     "@types/cors": "^2.8.9",
     "concurrently": "^5.3.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.1"
   }
