@@ -4,6 +4,7 @@ import { FcNews, FcServices } from "react-icons/fc";
 import InfoCard from "./InfoCard";
 import BarGraph from "./BarGraph";
 import Loader from "./Loader";
+import Error from "./Error";
 import { fetchEquipmentData } from "../redux/equipments";
 import { RootState } from "../redux/_store";
 import styles from "../styles/main.module.scss";
@@ -28,7 +29,7 @@ const Main = () => {
   if (loading) {
     renderedElement = <Loader />;
   } else if (errorMsg) {
-    renderedElement = <h1>Error</h1>;
+    renderedElement = <Error text={errorMsg} />;
   } else {
     renderedElement = (
       <div className={styles.chart}>
