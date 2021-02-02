@@ -7,29 +7,44 @@ import {
   XAxis,
   YAxis,
 } from "react-vis";
+import { CountType } from "../redux/equipments";
 
-const data = [
-  { x: 0, y: 8 },
-  { x: 1, y: 5 },
-  { x: 2, y: 4 },
-  { x: 3, y: 9 },
-  { x: 4, y: 1 },
-  { x: 5, y: 7 },
-  { x: 6, y: 6 },
-  { x: 7, y: 3 },
-  { x: 8, y: 2 },
-  { x: 9, y: 1 },
-  { x: 10, y: 8 },
-  { x: 11, y: 7 },
-];
+// remove the zero elements from the data object
+const removeEmptyElements = (data: CountType): CountType => {
+  const filteredObj: CountType = {};
+  Object.keys(data)
+    .filter((key) => data[key] !== 0)
+    .forEach((key) => (filteredObj[key] = data[key]));
+  return filteredObj;
+};
 
-const BarGraph = () => {
+// convert the data to chart data format, required by the library
+const convertToChartData = (data: CountType) => {
+  const chartData: { x: string; y: number }[] = [];
+  Object.keys(data).forEach((key) => {
+    chartData.push({ x: key, y: data[key] });
+  });
+
+  return chartData;
+};
+
+interface Props {
+  data: CountType;
+}
+
+const BarGraph: React.FC<Props> = ({ data }) => {
+  const filteredData = removeEmptyElements(data);
+
   return (
-    <XYPlot height={300} width={800}>
+    <XYPlot xType="ordinal" height={300} width={800}>
       <HorizontalGridLines />
       <VerticalGridLines />
-      <VerticalBarSeries data={data} barWidth={0.6} color="#ffa000" />
-      <XAxis />
+      <VerticalBarSeries
+        data={convertToChartData(filteredData)}
+        barWidth={0.8}
+        color="#ffa000"
+      />
+      <XAxis tickLabelAngle={-40.6} />
       <YAxis />
     </XYPlot>
   );

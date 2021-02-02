@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import cors from "cors";
 import morgan from "morgan";
 import nodeCache from "node-cache";
 import { equipmentHandler } from "./handler";
@@ -18,6 +19,9 @@ app.use(express.json());
 
 // setting up logging
 app.use(morgan("dev"));
+
+// enable cors for development
+app.use(cors());
 
 // client content serving route
 app.get("/", function (_, res) {

@@ -5,7 +5,7 @@ interface Props {
   title: string;
   description: string;
   icon: JSX.Element;
-  value: number;
+  value: number | undefined;
 }
 
 const InfoCard: React.FC<Props> = ({ title, description, value, icon }) => {
