@@ -1,5 +1,12 @@
 import React from "react";
-import { XYPlot, LineSeries } from "react-vis";
+import {
+  XYPlot,
+  VerticalBarSeries,
+  HorizontalGridLines,
+  VerticalGridLines,
+  XAxis,
+  YAxis,
+} from "react-vis";
 
 const data = [
   { x: 0, y: 8 },
@@ -11,13 +18,19 @@ const data = [
   { x: 6, y: 6 },
   { x: 7, y: 3 },
   { x: 8, y: 2 },
-  { x: 9, y: 0 },
+  { x: 9, y: 1 },
+  { x: 10, y: 8 },
+  { x: 11, y: 7 },
 ];
 
 const BarGraph = () => {
   return (
-    <XYPlot height={300} width={300}>
-      <LineSeries data={data} />
+    <XYPlot height={300} width={800}>
+      <HorizontalGridLines />
+      <VerticalGridLines />
+      <VerticalBarSeries data={data} barWidth={0.6} color="#ffa000" />
+      <XAxis />
+      <YAxis />
     </XYPlot>
   );
 };

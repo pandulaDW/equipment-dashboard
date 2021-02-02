@@ -1,16 +1,24 @@
 .container {
   display: flex;
+  height: 80%;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   padding: 2rem;
 }
 
 .cards {
-  margin: 0 auto;
   width: 60%;
   display: flex;
   justify-content: space-between;
 }
 
 .chart {
+  width: 80%;
   background-color: #ffffff;
+
+  div {
+    padding: 2.5rem 0;
+    margin: 0 auto;
+  }
 }
