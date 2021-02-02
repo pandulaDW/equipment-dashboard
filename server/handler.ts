@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Handler } from "express";
 import { myCache } from "./server";
-import { SuccessResponse, ErrorResponse } from "./resTypes";
-import { Equipment } from "../src/models/equipmentModels";
+import { equipmentService } from "./equipmentService";
+import { Equipment, SuccessResponse, ErrorResponse } from "./resTypes";
 
 // modifying the url using the given parameters
 const modifyUrl = (max: number, last: number): string => {
@@ -29,7 +29,8 @@ const fetchData = async (): Promise<SuccessResponse | ErrorResponse> => {
   return { status: "success", body: equipments };
 };
 
-// equipment route handler. If cache is expired, time to live will be set to one hour
+// equipment route handler will fetch the data from the api or use the cache to retrieve the data.
+// If the cache is expired, time to live will be set to one hour
 export const equipmentHandler: Handler = async (_, res) => {
   let equipments: Equipment[] | undefined;
   equipments = myCache.get("equipments");
@@ -41,5 +42,6 @@ export const equipmentHandler: Handler = async (_, res) => {
     equipments = response.body;
     myCache.set("equipments", equipments, 60 * 60);
   }
-  res.status(200).json(equipments);
+  const equipmentServiceResponse = equipmentService(equipments);
+  res.status(200).json(equipmentServiceResponse);
 };

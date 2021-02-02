@@ -1,4 +1,9 @@
-import { Equipment } from "../src/models/equipmentModels";
+export interface Equipment {
+  AssetCategoryID: string;
+  AssetID: string;
+  __rowid__: number;
+  OperationalStatus: "Operational" | "Non-Operational";
+}
 
 // defines the ErrorResponse for data fetching
 export interface ErrorResponse {
